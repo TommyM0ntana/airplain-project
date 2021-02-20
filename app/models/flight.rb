@@ -5,19 +5,20 @@ class Flight < ApplicationRecord
   has_one :flight_execution
 
   validates :airplain_id, presence: true
-  
-  validates :origin, :destination, :duration, presence: true
-
-  validates :time, presence: true
-  # greater that present 
-  validates :date, presence: true
-
+  validates :origin, :destination, :duration, :time, :date, presence: true
   validate :minimum_duration
+  validate :date_validity
 
   private
 
+  def date_validity
+    if date && (date < Date.today)
+      errors.add(:date, "can't be before today")
+    end
+  end
+
   def minimum_duration
-    if duration < 30 
+    if duration && (duration < 30)
       errors.add(:duration, "can't be less than 30 min")
     end
   end

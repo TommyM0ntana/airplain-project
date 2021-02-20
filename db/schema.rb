@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_134711) do
+ActiveRecord::Schema.define(version: 2021_02_20_162852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "airplains", force: :cascade do |t|
     t.string "model"
-    t.integer "first_class"
-    t.integer "executive_class"
-    t.integer "economic_class"
+    t.integer "first_class", null: false
+    t.integer "executive_class", null: false
+    t.integer "economic_class", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "flight_executions", force: :cascade do |t|
     t.bigint "flight_id", null: false
-    t.string "status"
-    t.boolean "delayed"
-    t.boolean "canceled"
+    t.string "status", default: "scheduled"
+    t.boolean "delayed", default: false
+    t.boolean "canceled", default: false
     t.datetime "departure"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
