@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_162852) do
+ActiveRecord::Schema.define(version: 2021_02_20_164425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,10 +63,10 @@ ActiveRecord::Schema.define(version: 2021_02_20_162852) do
   create_table "seats", force: :cascade do |t|
     t.bigint "flight_id"
     t.bigint "passenger_id"
-    t.string "seat_class"
-    t.boolean "near_exit"
-    t.boolean "extra_leg_space"
-    t.boolean "window_seat"
+    t.string "seat_class", null: false
+    t.boolean "near_exit", default: false
+    t.boolean "extra_leg_space", default: false
+    t.boolean "window_seat", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["flight_id"], name: "index_seats_on_flight_id"
