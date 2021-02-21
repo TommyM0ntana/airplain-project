@@ -5,9 +5,9 @@ module Api
 
       def index
         begin
-          seats = Seat.all
-          seats = seats.where(flight_id: params[:flight_id]) if params[:flight_id]
-          render json: seats
+          @seats = Seat.all
+          @seats = seats.where(flight_id: params[:flight_id]) if params[:flight_id]
+          render 'seats'
         rescue StandardError => e
           render json: { message: "Something went wrong" } 
         end
@@ -15,9 +15,9 @@ module Api
 
       def show
         begin
-          seat = Seat.find(params[:id])
-          if seat
-            render json: seat
+          @seat = Seat.find(params[:id])
+          if @seat
+            render 'seat'
           end
         rescue StandardError => e
           render json: { messages: e.message }

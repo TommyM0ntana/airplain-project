@@ -14,9 +14,9 @@ module Api
 
       def show
         begin
-          user = User.find(params[:id])
-          if user
-            render json: user
+          @user = User.find(params[:id])
+          if @user
+            render 'user'
           end
         rescue StandardError => e
           render json: { messages: e.message }

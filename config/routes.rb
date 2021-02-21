@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       resources :flight_executions
       resources :seats
       resources :passengers
-      resources :users  
+      resources :users
+      put 'passengers/:id/book_flight_seat/:seat_id', to: 'passengers#book_flight_seat', as: 'book_flight_seat'
     end
   end
 

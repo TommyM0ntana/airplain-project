@@ -5,8 +5,9 @@ module Api
 
       def index
         begin
-          passengers = Passenger.all
-          render json: passengers
+          @passengers = Passenger.all
+          @passengers = @passengers.where(user_id: params[:user_id]) if params[:user_id] 
+          render 'passengers'
         rescue StandardError => e
           render json: { message: "Something went wrong" } 
         end
@@ -14,9 +15,10 @@ module Api
 
       def show
         begin
-          passenger = Passenger.find(params[:id])
-          if passenger
-            render json: passenger
+          @passenger = Passenger.find(params[:id])
+          if @passenger
+            render 'show'
+            #render json: { passenger: passenger, seats: passenger.seats }
           end
         rescue StandardError => e
           render json: { messages: e.message }
@@ -30,6 +32,20 @@ module Api
             render json: passenger
           else
             render json: { message: passenger.errors.messages }, status: :unprocessable_entity
+          end
+        rescue StandardError => e
+          render json: { message: e.message }, status: :unprocessable_entity
+        end
+      end
+
+      def book_flight_seat
+        begin
+          passenger = Passenger.find(params[:id])
+          seat = Seat.find(params[:seat_id])
+          if seat.update(passenger_id: passenger.id)
+            render json: seat
+          else
+            render json: { message: 'Something went wront'}, status: 500
           end
         rescue StandardError => e
           render json: { message: e.message }, status: :unprocessable_entity
