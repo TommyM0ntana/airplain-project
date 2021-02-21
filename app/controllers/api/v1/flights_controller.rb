@@ -6,6 +6,10 @@ module Api
       def index
         begin
           @flights = Flight.all
+          @flights = @flights.where(destination: params[:destination]) if params[:destination]
+          @flights = @flights.where(origin: params[:origin]) if params[:origin]
+          @flights = @flights.where(date: params[:date]) if params[:date]
+          @flights = @flights.order('date ASC')
           render 'index_with_airplain'
         rescue StandardError => e
           render json: { message: "Something went wrong" } 

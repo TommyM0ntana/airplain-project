@@ -53,7 +53,7 @@ module Api
         begin
           flight_executions = FlightExecution.find(params[:id])
           if flight_executions.destroy
-            render json: 'This flight was successfully deleted'
+            render json: 'This flight execution was successfully deleted'
           else
             render json: { message: 'Something went wront'}, status: 500
           end

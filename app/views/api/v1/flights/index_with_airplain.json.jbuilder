@@ -5,4 +5,5 @@ json.array! @flights do |flight|
   json.time flight.time
   json.destination flight.destination 
   json.airplain flight.airplain
+  json.date flight.date
 end

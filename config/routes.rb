@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :flight_executions
       resources :seats
       resources :passengers
-      resources :users
+      resources :users  
     end
   end
 

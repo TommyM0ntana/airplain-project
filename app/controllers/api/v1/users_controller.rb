@@ -29,7 +29,7 @@ module Api
           if user.save
             render json: user
           else
-            render json: { message: 'Something went wront on save'}, status: :unprocessable_entity
+            render json: { message: user.errors.messages }, status: :unprocessable_entity
           end
         rescue StandardError => e
           render json: { message: e.message }, status: :unprocessable_entity
@@ -39,8 +39,8 @@ module Api
       def update
         begin
         user = User.find(params[:id])
-          if seat.update(user_params)
-            render json: 'This flight was successfully updated'
+          if user.update(user_params)
+            render json: 'This user was successfully updated'
           else
             render json: { message: 'Something went wront'}, status: 500
           end
@@ -53,7 +53,7 @@ module Api
         begin
           user = User.find(params[:id])
           if user.destroy
-            render json: 'This flight was successfully deleted'
+            render json: 'This user was successfully deleted'
           else
             render json: { message: 'Something went wront'}, status: 500
           end

@@ -44,7 +44,7 @@ module Api
         begin
           airplain = Airplain.find(params[:id])
           if airplain.update(airplain_params)
-            render json: { message: 'This airpalin was successfully updated', airplain: airplain }
+            render json: { message: 'This airplain was successfully updated', airplain: airplain }
           else
             render json: { message: 'Something went wront'}, status: 500
           end

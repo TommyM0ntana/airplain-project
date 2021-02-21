@@ -53,7 +53,7 @@ module Api
         begin
           passenger = Passenger.find(params[:id])
           if passenger.destroy
-            render json: 'This flight was successfully deleted'
+            render json: 'This passenger was successfully deleted'
           else
             render json: { message: 'Something went wront'}, status: 500
           end
