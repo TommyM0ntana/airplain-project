@@ -16,7 +16,7 @@ class Flight < ApplicationRecord
     if new_flight.save
       flight_execution = new_flight.flight_execution.build
       if flight_execution.save
-        Seat.create_airplain_seats(flight_params[:airplain_id]) 
+        Seat.create_airplain_seats(flight_params[:airplain_id])
       end
     end
     new_flight
@@ -33,5 +33,4 @@ class Flight < ApplicationRecord
       errors.add(:duration, "can't be less than 30 min")
     end
   end
-
 end
