@@ -5,7 +5,7 @@ class Seat < ApplicationRecord
 
   private
 
-  def self.create_airplain_seats(airplain_id)
+  def self.create_airplain_seats(airplain_id, new_flight)
     airplain = Airplain.find(airplain_id)
     first_class = airplain.first_class
     executive_class = airplain.executive_class
@@ -19,5 +19,6 @@ class Seat < ApplicationRecord
     (0...economic_class).each do |_n|
       new_flight.seats.build(seat_class: 'economic_class').save
     end
+    { message: 'Seats Created', seats: { first_class: first_class, executive_class: executive_class, economic_class: economic_class } }
   end
 end

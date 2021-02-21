@@ -16,10 +16,12 @@ class Flight < ApplicationRecord
     if new_flight.save
       flight_execution = new_flight.flight_execution.build
       if flight_execution.save
-        Seat.create_airplain_seats(flight_params[:airplain_id])
+        Seat.create_airplain_seats(flight_params[:airplain_id], new_flight)
       end
+      new_flight
+    else
+      { errors: new_flight.errors.messages }
     end
-    new_flight
   end
 
   def date_validity
