@@ -3,7 +3,7 @@ module Api
     class AirplainsController < ApplicationController
       skip_before_action :verify_authenticity_token
       
-      # GET /api/v1/airplains 
+      # GET /api/v1/airplains
       def index
         begin
           airplains = Airplain.all

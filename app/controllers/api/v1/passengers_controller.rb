@@ -18,7 +18,6 @@ module Api
           @passenger = Passenger.find(params[:id])
           if @passenger
             render 'show'
-            #render json: { passenger: passenger, seats: passenger.seats }
           end
         rescue StandardError => e
           render json: { messages: e.message }
