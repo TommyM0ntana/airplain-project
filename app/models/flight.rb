@@ -15,9 +15,7 @@ class Flight < ApplicationRecord
     new_flight = new(flight_params)
     if new_flight.save
       flight_execution = new_flight.flight_execution.build
-      if flight_execution.save
-        Seat.create_airplain_seats(flight_params[:airplain_id], new_flight)
-      end
+      Seat.create_airplain_seats(flight_params[:airplain_id], new_flight) if flight_execution.save
       new_flight
     else
       { errors: new_flight.errors.messages }
@@ -25,14 +23,10 @@ class Flight < ApplicationRecord
   end
 
   def date_validity
-    if date && (date < Date.today)
-      errors.add(:date, "can't be before today")
-    end
+    errors.add(:date, "can't be before today") if date && (date < Date.today)
   end
 
   def minimum_duration
-    if duration && (duration < 30)
-      errors.add(:duration, "can't be less than 30 min")
-    end
+    errors.add(:duration, "can't be less than 30 min") if duration && (duration < 30)
   end
 end
