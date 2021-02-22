@@ -46,7 +46,9 @@ rails db:create
 rails db:migrate
 ```
 
-## POSTMAN SHARED COLLECTION WITH ALL THE API REQUESTS('https://www.getpostman.com/collections/f6049bc33f3d6eb34ce5')
+## POSTMAN SHARED COLLECTION WITH ALL THE API REQUESTS
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/f6049bc33f3d6eb34ce5)
 
 ## Airplain Routes
 
